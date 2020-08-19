@@ -29,18 +29,18 @@ button:hover {
   margin: 0 auto;
 }
 
-.shopping-list {
+.url-list {
   list-style: none;
   padding-left: 0;
 }
 
-.shopping-list > li {
+.url-list > li {
   margin-bottom: 20px;
   border: 1px solid grey;
   padding: 20px;
 }
 
-.shopping-item {
+.url-item {
   display: block;
   color: grey;
   font-style: italic;
@@ -48,6 +48,6 @@ button:hover {
   margin-bottom: 15px;
 }
 
-.shopping-item__checked {
-  text-decoration: line-through;
+.url-item__condense {
+  
 }
