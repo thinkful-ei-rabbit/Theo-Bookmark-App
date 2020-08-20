@@ -6,6 +6,9 @@ body {
   font-family: 'Roboto', sans-serif;
   width: 85%;
   margin: 0 auto;
+  padding: 21px;
+  padding-bottom: 42px;
+  border: solid 5px grey;
 }
 
 button, input[type="text"] {
@@ -29,15 +32,33 @@ button:hover {
   margin: 0 auto;
 }
 
-.url-list {
+.form-container li {
   list-style: none;
   padding-left: 0;
 }
 
-.url-list > li {
-  margin-bottom: 20px;
+ li {
+  margin: 21px;
   border: 1px solid grey;
   padding: 20px;
+}
+
+li #name{
+  font-size: 21px;
+  margin: 7px
+}
+
+li #description{
+  font-size: 14px;
+  color: blue;
+  margin: 7px;
+}
+
+li #rating{
+  font-style: italic;
+  color: purple;
+  font-size: 14px;
+  float: right;
 }
 
 .url-item {
@@ -46,6 +67,42 @@ button:hover {
   font-style: italic;
   font-size: 20px;
   margin-bottom: 15px;
+}
+
+#js-url-list-form{
+  height: 200px;
+  padding: 7px;
+}
+
+.js-url-titles{
+  margin: 7px;
+  margin-top: 0;
+}
+
+.js-url-list-entry{
+  border: 3px blue solid;
+}
+.js-url-list-description{
+margin: 7px;}
+
+.js-url-list-description #description{ 
+
+  border: 3px blue solid;
+
+}
+
+.js-url-ratings{
+  margin: 7px;
+  float: right;
+}
+
+.js-url-ratings #rating{
+  border: 3px blue solid;
+
+}
+
+.js-item-delete{
+  margin: 14px;
 }
 
 .url-item__condense {
