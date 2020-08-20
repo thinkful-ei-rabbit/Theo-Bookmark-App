@@ -50,14 +50,14 @@ const NewBookmarkPage = function(){
 
     <div class ="js-url-titles">
     <label for="url-entry">Add a URL </label>
-    <input type="text" name="url-entry" class="js-url-list-entry" placeholder="e.g., google.com">
+    <input type="text" name="url-entry" class="js-url-list-entry" placeholder="e.g., google.com" >
 
     </div>
     
     
     <div class="js-url-list-description">
     <label for="message box">Description</label>
-    <textarea name="message" id="description" placeholder="Add description here" value=""> </textarea>
+    <textarea name="message" id="description" placeholder="Add description here" value="" > </textarea>
     </div>
 
 
@@ -91,7 +91,7 @@ const createNewBookmark = function (){
     
 
     store.bookmarks.push({URL: newUrlName, description: newDescription, rating: newRating});
-    console.log("bookmarks list", store.bookmarks);
+    
     // api.apiFetch(newUrlName)
     //   .then((newUrlName) => {
     //     store.bookmarks(newUrlName);
@@ -106,7 +106,7 @@ const createNewBookmark = function (){
 
 };
 const generateStore = function(store){
-  console.log("inside loop", store)
+
   let html =``
   for(let i=0 ; i<store.length; i++){
    html+= `<li>
