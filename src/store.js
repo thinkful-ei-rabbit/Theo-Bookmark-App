@@ -1,14 +1,28 @@
 const bookmarks=[];
-  
+const expanded=false; 
 
+
+const addBookmark =function(bookmark){
+
+
+  this.bookmarks.push(bookmark);
+}
 //let error = null;
 
+const findAndDelete = function (id) {
+  this.bookmarks = this.bookmarks.filter(currentItem => currentItem.id !== id);
+};
+
 const validateSubmission = function(submission){
-  if(submission.val()=== ''){
+  console.log(submission)
+  if(submission=== ''){
     throw new TypeError(`This submission can't be blank`)}
 };
 
 export default {
   bookmarks,
-  validateSubmission
+  expanded,
+  validateSubmission,
+  addBookmark,
+  findAndDelete,
 };

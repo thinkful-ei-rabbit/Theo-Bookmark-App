@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box;
-}
+
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -9,6 +7,8 @@ body {
   padding: 21px;
   padding-bottom: 42px;
   border: solid 5px grey;
+  display: flex;
+  flex-direction: column;
 }
 
 button, input[type="text"] {
@@ -23,22 +23,69 @@ button:hover {
   display: none;
 }
 
-#shopping-list-item {
-  width: 250px;
-}
 
 .container {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.form-container li {
-  list-style: none;
-  padding-left: 0;
+.form-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+  
 }
 
+.js-url{
+  display: flex;
+  flex-direction: column;
+  margin: 14px;
+}
+
+.js-url-list-entry{
+  margin: 7px;
+  border: palegreen 1px solid;
+
+}
+.js-url-title-entry{
+  margin: 7px;
+  border: palegreen 1px solid;
+}
+
+.js-url-list-description{
+  display: flex;
+  flex-direction: column;
+  margin: 7px;
+
+}
+.js-url-list-description #description{ 
+  margin: 7px;
+  border: palegreen 1px solid;
+}
+
+
+
+
+.hide{
+
+ font-size: xx-small;
+ margin: 42px 21px;
+ margin-left: 200px;
+}
+.url-item {
+  display: block;
+  color: grey;
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
  li {
-  margin: 21px;
+  margin: 21px 21px;
+  margin-left: 0;
+  margin-right: 21px;
+
   border: 1px solid grey;
   padding: 20px;
 }
@@ -48,9 +95,14 @@ li #name{
   margin: 7px
 }
 
+li #urlName{
+  font-size: 14px;
+  margin: 7px;
+  color: blue;
+}
 li #description{
   font-size: 14px;
-  color: blue;
+  color: red;
   margin: 7px;
 }
 
@@ -61,43 +113,26 @@ li #rating{
   float: right;
 }
 
-.url-item {
-  display: block;
-  color: grey;
-  font-style: italic;
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-
 #js-url-list-form{
   height: 200px;
   padding: 7px;
 }
 
-.js-url-titles{
+/* .js-url-titles{
   margin: 7px;
   margin-top: 0;
-}
+} */
 
-.js-url-list-entry{
+.js-url-list{
   border: 3px blue solid;
-}
-.js-url-list-description{
-margin: 7px;}
+  list-style: none;
+  margin: 7px;}
 
-.js-url-list-description #description{ 
 
-  border: 3px blue solid;
 
-}
-
-.js-url-ratings{
-  margin: 7px;
-  float: right;
-}
 
 .js-url-ratings #rating{
-  border: 3px blue solid;
+  border: 1px greenyellow solid;
 
 }
 
@@ -105,6 +140,26 @@ margin: 7px;}
   margin: 14px;
 }
 
-.url-item__condense {
+a{
+  text-decoration: none;
+}
+
+@media all and (min-width:800px){
   
+  body{
+    width:80%
+  }
+  .form-container #js-url-list-form{
+    display: flex;
+    padding: 14px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: lightgreen 1px dotted;
+    
+  }
+  .js-url-ratings #rating{
+    border: 1px greenyellow solid;
+    align-self: ;
+  }
 }
