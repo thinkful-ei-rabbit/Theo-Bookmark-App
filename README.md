@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 https://thinkful-ei-rabbit.github.io/Theo-Bookmark-App/
 
 This app is only viewable with the appropriate node configuration.
@@ -24,3 +25,10 @@ This app uses fetch for AJAX calls and jQuery for DOM manipulation and employs n
 The app is steamlined by employing a mobile-first media query.
 
 This app is a work in progress. Any advice or criticsm is more than welcome. I am still learning, but I always intend to put my best foot forward.
+=======
+## Shopping List Starter
+
+#### Created for the Thinkful EI Program.
+
+Please reference the startup instructions within your curriculum.
+>>>>>>> parent of 770934c... Update README.md
