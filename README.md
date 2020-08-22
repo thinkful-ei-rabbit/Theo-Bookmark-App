@@ -1,7 +1,7 @@
 
 https://thinkful-ei-rabbit.github.io/Theo-Bookmark-App/
 
-This app allows you to track your favorite websites by includining the following info:
+This app allows you to track your favorite websites by including the following info:
   --Title
   --URL link
   --A short description
