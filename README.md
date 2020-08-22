@@ -1,8 +1,6 @@
 
 https://thinkful-ei-rabbit.github.io/Theo-Bookmark-App/
 
-This app is only viewable with the appropriate node configuration.
-
 This app allows you to track your favorite websites by includining the following info:
   --Title
   --URL link
