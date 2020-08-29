@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "play": "hangman"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thinkful-ei-heron/shopping-list-starter.git"

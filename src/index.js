@@ -8,14 +8,13 @@ import api from './api';
 const main = function () {
 
   api.getBookmarks() 
-  .then(res => {
-    console.log("These are the res", res)
-    res.forEach(item => {
-      console.log(item)
-      store.addBookmark(item)
-      bookmarkList.render()
-    })
-  } )
+    .then(res => {
+      console.log("These are the res", res)
+      res.forEach(item => {
+        store.addBookmark(item)
+        bookmarkList.render()
+      });
+    } );
   bookmarkList.generateHomePage();
   bookmarkList.bindEventListeners();
   //bookmarkList.render();

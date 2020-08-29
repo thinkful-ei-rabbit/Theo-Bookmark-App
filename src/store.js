@@ -1,10 +1,11 @@
 const bookmarks=[];
-const expanded=false; 
+
 
 
 const addBookmark =function(bookmark){
 
-
+  const newBookmark = Object.assign(bookmark, { expanded: false });
+  this.bookmarks.push(newBookmark);
   this.bookmarks.push(bookmark);
 }
 //let error = null;
@@ -12,6 +13,21 @@ const addBookmark =function(bookmark){
 const findAndDelete = function (id) {
   this.bookmarks = this.bookmarks.filter(currentItem => currentItem.id !== id);
 };
+
+const findById = function(id) {
+  return this.bookmarks.find(currentBookmark => currentBookmark.id === id);
+};
+
+const findAndExpand = function(id) {
+  let bookmark = this.findById(id);
+  bookmark.expanded = true;
+};
+
+const findAndCondense = function(id) {
+  let bookmark = this.findById(id);
+  bookmark.expanded = false;
+};
+
 
 const validateSubmission = function(submission){
   console.log(submission)
@@ -21,8 +37,10 @@ const validateSubmission = function(submission){
 
 export default {
   bookmarks,
-  expanded,
   validateSubmission,
   addBookmark,
   findAndDelete,
+  findById,
+  findAndExpand,
+  findAndCondense
 };

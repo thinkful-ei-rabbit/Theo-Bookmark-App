@@ -3,6 +3,7 @@
 import $ from 'jquery';
 import store from './store';
 import api from './api';
+import item from './item';
 
 
 
@@ -19,22 +20,20 @@ const homePage = function(){
   <select id="filter-rating">
   <option value="0">No filter</option>
   <option value="1">Trash</option>
-  <option value="2">Useful</option>
-  <option value="3">Handy</option>
+  <option value="2">Handy</option>
+  <option value="3">Useful</option>
   <option value="4">Important</option>  
+  <option value="5">Essential</option>  
   </select>
   <button id= "filter">Filter</button>
 </div>`;
 };
 
 
-// const render =function({
-
-// })
 const generateHomePage =function (){
   let html= homePage()
   return $('.container').html(html);
-}
+};
 
 
 const NewBookmarkPage = function(){
@@ -45,9 +44,10 @@ const NewBookmarkPage = function(){
    <div class ="js-url-ratings">
    <select name = "rating" id="rating">
    <option value="1" name="Trash">Trash</option>
-   <option value="2" name="Useful">Useful</option>
-   <option value="3" name="Handy">Handy</option>
+   <option value="2" name="Handy">Handy</option>
+   <option value="3" name="Useful">Useful</option>
    <option value="4" name="Important">Important</option>  
+   <option value="4" name="Essential">Essential</option>  
    </select>
    </div>
   
@@ -85,12 +85,14 @@ $('.form-container').on('click', '.hide', function(){
 };
 
 
+
+
 const generateNewBookmarkPage = function(){
   $('#addNew').on('click',function(){
     let html = NewBookmarkPage();
 $('.form-container').html(html);
-
-   createNewBookmark()
+  
+    createNewBookmark();
   });
 };
 
@@ -101,9 +103,9 @@ const filterByRating= function(rating){
   let html =``
   for(let i=0 ; i<store.bookmarks.length; i++){
 
-    if (store.bookmarks[i].rating == rating) {
+    if (store.bookmarks[i].rating >= rating) {
 
- html+= `<a href="${store.bookmarks[i].url}">  
+      html+= `<a href="${store.bookmarks[i].url}">  
       <li data-bookmark-id ="${store.bookmarks[i].id}">
       
        <div id="name">${store.bookmarks[i].title}</div> 
@@ -120,10 +122,10 @@ const filterByRating= function(rating){
         </button>
         
       </div>
-     </li>`
-}
-}
-  console.log(html);
+     </li>`;
+    }
+
+  }
   return $('.url-list').html(html);
 
 
@@ -144,48 +146,44 @@ const createNewBookmark = function (){
 
   $('.form-container').on('submit', '#js-url-list-form', function(event) {
     event.preventDefault();
+
     const newBookmark ={
       title: event.target.title.value,
       url: event.target.urlEntry.value,
       desc: event.target.message.value,
       rating: parseInt(event.target.rating.value),
-     
+      expanded: true,
+      
 
     };
-    console.log(event.target);
 
-    //const newUrlName = $('.js-url-list-entry').val();
-   // const newDescription =$('#description').val();
-   // const newRating= $('#rating').val();
+    console.log('here', newBookmark)
 
-    try{
-      console.log(store)
-      store.validateSubmission(`${newBookmark}`);
-      //store.bookmarks.push({URL: newUrlName, description: newDescription, rating: newRating});
+
+  
       
-      api.createBookmark(newBookmark)
-        .then((response) => {
-          return response.json();
-        })
-        .then((jsonData)=> {
-          console.log(jsonData);
-          store.addBookmark(jsonData)
-          console.log(store.bookmarks)
-          render(generateStore(store.bookmarks));
-        });
+    api.createBookmark(newBookmark)
+      .then((response) => {
+  
+        return response.json();
+      })
+      .then((jsonData)=> {
+        console.log("why", jsonData);
+        store.addBookmark(jsonData)
+        console.log( store.bookmarks)
+        render(generateStore(store.bookmarks));
+      });
 
         
-    }
-      catch(error)
-      { alert(`Cannot add item because there is no content`) ;}
+  
     
     
-     $('.js-url-list-entry').val('https://');
-     $('.js-url-title-entry').val('');
-     $('#description').val('');
+    $('.js-url-list-entry').val('https://');
+    $('.js-url-title-entry').val('');
+    $('#description').val('');
      
-     render(generateStore(store.bookmarks));
-      deleteItem();
+    render(generateStore(store.bookmarks));
+    deleteItem();
   });
 
 };
@@ -193,8 +191,10 @@ const generateStore = function(){
 
   let html =``
   for(let i=0 ; i<store.bookmarks.length; i++){
-   html+= `<a href="${store.bookmarks[i].url}">  
-        <li data-bookmark-id ="${store.bookmarks[i].id}">
+
+    if(store.bookmarks[i].expanded=== true){
+    html+= 
+        `<li data-bookmark-id ="${store.bookmarks[i].id}">
         
          <div id="name">${store.bookmarks[i].title}</div> 
          <br>
@@ -203,20 +203,38 @@ const generateStore = function(){
          <div id="description"> ${store.bookmarks[i].desc} </div>
          <br>
          <div id="rating"> rating: ${store.bookmarks[i].rating} </div>
-        </a>
+        
         <div class="item-controls">
           <button class="js-item-delete">
             <span class="button-label">delete</span>
           </button>
-          
+          <button class ="js-item-condense">
+          <span class ="button-label">condense</span>
+        </button>
         </div>
-       </li>`
+       </li>`;}
+
+    else{
+      html+= `<li data-bookmark-id ="${store.bookmarks[i].id}">
+        
+      <div id="name">${store.bookmarks[i].title}</div>
+      <div class="item-controls">
+      <button class="js-item-delete">
+        <span class="button-label">delete</span>
+      </button>
+      <button class ="js-item-expand">
+      <span class ="button-label">Expand</span>
+    </button>
+    </div>`;
+  }
+
+
   }
   
   return html;
   
 
-}
+};
 
 const render =function(html){
   $('.url-list').html(generateStore());
@@ -227,12 +245,36 @@ const getElementAndReturnID = function(element) {
   return $(element).closest('li').data('bookmark-id');
 };
 
+
+
+
+const expandItem = function(){
+  $('.url-list').on('click', '.js-item-expand', function(event){
+    const id = getElementAndReturnID(event.target)
+    console.log(id)
+    store.findAndExpand(id);
+    render();
+ 
+  });   
+};
+
+const condenseItem = function(){
+  $('.url-list').on('click', '.js-item-condense', function(event){
+    const id = getElementAndReturnID(event.target)
+    console.log(id)
+    store.findAndCondense(id);
+    render();
+ 
+  });   
+};
+
+
+  
 const deleteItem = function (){
 
   $('.url-list').on('click', '.js-item-delete', function(event){
     let id = getElementAndReturnID(event.target);
-    console.log('click')
-    console.log(id)
+    console.log(id);
   
     api.deleteBookmark(id)
       .then(() => {
@@ -242,17 +284,19 @@ const deleteItem = function (){
         
       })
       .catch((err)=> {
-        console.log(err)
+        alert(err);
       }
-      )
+      );
   });   
 
-}
+};
 
 const bindEventListeners = function () {
   
   generateNewBookmarkPage();
   deleteItem();
+  expandItem();
+  condenseItem();
   hideButton();
   filterByRating();
   handleFilterClick();

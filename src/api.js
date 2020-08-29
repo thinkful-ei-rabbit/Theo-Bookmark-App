@@ -35,8 +35,9 @@ const getBookmarks = function(){
 
 
 const createBookmark = function(template){
-  const newBookmark= JSON.stringify(template)
-
+  const newBookmark= JSON.stringify(template);
+  console.log("look", newBookmark)
+ 
   return fetch(`${BASE_URL}`,{
   
     method: 'POST',
@@ -44,11 +45,10 @@ const createBookmark = function(template){
     body:  newBookmark
   });
 };
-
 const deleteBookmark = function (id) {
   return fetch(BASE_URL + "/" +id, {
     method: 'DELETE'
-  })
+  });
 
 };
 
