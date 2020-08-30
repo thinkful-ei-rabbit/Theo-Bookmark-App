@@ -6,7 +6,7 @@ const addBookmark =function(bookmark){
 
   const newBookmark = Object.assign(bookmark, { expanded: false });
   this.bookmarks.push(newBookmark);
-  this.bookmarks.push(bookmark);
+ 
 }
 //let error = null;
 

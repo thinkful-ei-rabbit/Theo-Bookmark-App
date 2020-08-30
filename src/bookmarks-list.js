@@ -3,16 +3,10 @@
 import $ from 'jquery';
 import store from './store';
 import api from './api';
-import item from './item';
 
 
 
-// const generateElement = function (bookmark) {
-//   let bookmarkTitle = `<span class="new page">${bookmark.name}</span>`;
-  
-//   
-//     
-// };
+
 const homePage = function(){
   return `   <div>
   <button id= "addNew">Create New Bookmark</button>
@@ -29,11 +23,42 @@ const homePage = function(){
 </div>`;
 };
 
+const expandedItem= function(i){ 
+  return `<li data-bookmark-id ="${store.bookmarks[i].id}">
+        
+  <div id="name">${store.bookmarks[i].title}</div> 
+  <br>
+  <div id="urlName">${store.bookmarks[i].url}</div> 
+  <br>
+  <div id="description"> ${store.bookmarks[i].desc} </div>
+  <br>
+  <div id="rating"> rating: ${store.bookmarks[i].rating} </div>
 
-const generateHomePage =function (){
-  let html= homePage()
-  return $('.container').html(html);
+  <div class="item-controls">
+  <button class="js-item-delete">
+    <span class="button-label">delete</span>
+  </button>
+  <button class ="js-item-condense">
+  <span class ="button-label">condense</span>
+  </button>
+  </div>
+  </li>`;};
+
+const condensedItem = function(i){
+  return `<li data-bookmark-id ="${store.bookmarks[i].id}">
+        
+    <div id="name">${store.bookmarks[i].title}</div>
+    <div class="item-controls">
+    <button class="js-item-delete">
+      <span class="button-label">delete</span>
+    </button>
+    <button class ="js-item-expand">
+    <span class ="button-label">Expand</span>
+  </button>
+  </div>`;
 };
+
+
 
 
 const NewBookmarkPage = function(){
@@ -75,54 +100,46 @@ const NewBookmarkPage = function(){
   <button class= "hide">Hide</button>`;
 };
 
-const hideButton =function(){
-$('.form-container').on('click', '.hide', function(){
-    let html= ''
-    return $('.form-container').html(html);
-  });
- 
-
+const generateHomePage =function (){
+  let html= homePage()
+  return $('.container').html(html);
 };
-
-
-
 
 const generateNewBookmarkPage = function(){
   $('#addNew').on('click',function(){
     let html = NewBookmarkPage();
 $('.form-container').html(html);
   
-    createNewBookmark();
+    
   });
 };
 
+const hideFun = function(){
+  let html= '';
 
+  return $('.form-container').html(html);
+};
+
+const hideButton =function(){
+  
+$('.form-container').on('click', '.hide', function(){
+    event.preventDefault();
+    
+  
+    hideFun();
+  });
+ 
+
+};
 
 const filterByRating= function(rating){
 
-  let html =``
+  let html ='';
   for(let i=0 ; i<store.bookmarks.length; i++){
 
     if (store.bookmarks[i].rating >= rating) {
 
-      html+= `<a href="${store.bookmarks[i].url}">  
-      <li data-bookmark-id ="${store.bookmarks[i].id}">
-      
-       <div id="name">${store.bookmarks[i].title}</div> 
-       <br>
-       <div id="urlName">${store.bookmarks[i].url}</div> 
-       <br>
-       <div id="description"> ${store.bookmarks[i].desc} </div>
-       <br>
-       <div id="rating"> rating: ${store.bookmarks[i].rating} </div>
-      </a>
-      <div class="item-controls">
-        <button class="js-item-delete">
-          <span class="button-label">delete</span>
-        </button>
-        
-      </div>
-     </li>`;
+      html+= condensedItem(i);
     }
 
   }
@@ -152,12 +169,10 @@ const createNewBookmark = function (){
       url: event.target.urlEntry.value,
       desc: event.target.message.value,
       rating: parseInt(event.target.rating.value),
-      expanded: true,
+    
       
 
     };
-
-    console.log('here', newBookmark)
 
 
   
@@ -182,8 +197,9 @@ const createNewBookmark = function (){
     $('.js-url-title-entry').val('');
     $('#description').val('');
      
-    render(generateStore(store.bookmarks));
+    // render(generateStore(store.bookmarks));
     deleteItem();
+    hideFun();
   });
 
 };
@@ -193,40 +209,12 @@ const generateStore = function(){
   for(let i=0 ; i<store.bookmarks.length; i++){
 
     if(store.bookmarks[i].expanded=== true){
-    html+= 
-        `<li data-bookmark-id ="${store.bookmarks[i].id}">
-        
-         <div id="name">${store.bookmarks[i].title}</div> 
-         <br>
-         <div id="urlName">${store.bookmarks[i].url}</div> 
-         <br>
-         <div id="description"> ${store.bookmarks[i].desc} </div>
-         <br>
-         <div id="rating"> rating: ${store.bookmarks[i].rating} </div>
-        
-        <div class="item-controls">
-          <button class="js-item-delete">
-            <span class="button-label">delete</span>
-          </button>
-          <button class ="js-item-condense">
-          <span class ="button-label">condense</span>
-        </button>
-        </div>
-       </li>`;}
+      html+= 
+      expandedItem(i);}
 
     else{
-      html+= `<li data-bookmark-id ="${store.bookmarks[i].id}">
-        
-      <div id="name">${store.bookmarks[i].title}</div>
-      <div class="item-controls">
-      <button class="js-item-delete">
-        <span class="button-label">delete</span>
-      </button>
-      <button class ="js-item-expand">
-      <span class ="button-label">Expand</span>
-    </button>
-    </div>`;
-  }
+      html+= condensedItem(i);
+    }
 
 
   }
@@ -300,6 +288,7 @@ const bindEventListeners = function () {
   hideButton();
   filterByRating();
   handleFilterClick();
+  createNewBookmark();
   // backButton();
 
 };

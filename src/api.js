@@ -37,7 +37,7 @@ const getBookmarks = function(){
 const createBookmark = function(template){
   const newBookmark= JSON.stringify(template);
   console.log("look", newBookmark)
- 
+  console.log('here',)
   return fetch(`${BASE_URL}`,{
   
     method: 'POST',
