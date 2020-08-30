@@ -3,10 +3,10 @@ https://thinkful-ei-rabbit.github.io/Theo-Bookmark-App/
 
 This app allows you to track your favorite websites by including the following info:
 
-  --Title
-  --URL link
-  --A short description
-  --And a convenience rating
+  --Title-
+  --URL link-
+  --A short description-
+  --And a convenience rating-
   
 When you first open the app you will be able to see a list of your saved bookmarks.
 When you log new bookmarks they will be posted and stored to the following URL:https://thinkful-list-api.herokuapp.com/theo/bookmarks
