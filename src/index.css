@@ -1,18 +1,40 @@
 
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'gothic', sans-serif;
   width: 85%;
   margin: 0 auto;
-  padding: 21px;
+  margin-top: 21px ;
+  margin-bottom: 21px ;
+  padding: 28px;
   padding-bottom: 42px;
-  border: solid 5px grey;
   display: flex;
   flex-direction: column;
+  border: lightblue 10px solid;
+  border-radius: 21%;
+  background-image: url("bookmark-background.jpg")
+}
+fieldset{
+  border: transparent;
+  margin: 0;
+}
+body h1{
+  text-align: center;
+  font-size: 42px;
 }
 
-button, input[type="text"] {
+main{
+  background-color: snow;
+  border: lightskyblue 3px dotted;
+  border-radius: 21%;
+  padding: 10px;
+}
+button {
   padding: 5px;
+  border-radius: 12%;
+  border: lightblue 1px solid;
+  margin: 3px;
+  background-color: lightskyblue;
 }
 
 button:hover {
@@ -23,10 +45,20 @@ button:hover {
   display: none;
 }
 
+.filter-box{
+  padding:7px;
+}
 
+#filter-rating{
+  background-color: lightskyblue;
+}
 .container {
   max-width: 600px;
-  margin: 0 auto;
+  margin: 21px;
+  padding: 21px;
+  display: flex;
+  justify-content: space-evenly;
+
 }
 
 .form-container{
@@ -46,12 +78,12 @@ button:hover {
 
 .js-url-list-entry{
   margin: 7px;
-  border: palegreen 1px solid;
+  border: lightskyblue 1px solid;
 
 }
 .js-url-title-entry{
   margin: 7px;
-  border: palegreen 1px solid;
+  border: lightskyblue 1px solid;
 }
 
 .js-url-list-description{
@@ -62,21 +94,19 @@ button:hover {
 }
 .js-url-list-description #description{ 
   margin: 7px;
-  border: palegreen 1px solid;
+  border: lightskyblue 1px solid;
 }
-
-
-
 
 .hide{
 
  font-size: xx-small;
- margin: 42px 21px;
+ margin: 84px 21px;
  margin-left: 200px;
 }
 .url-item {
   display: block;
   color: grey;
+  border: blue solid 1px;
   font-style: italic;
   font-size: 20px;
   margin-bottom: 15px;
@@ -85,9 +115,10 @@ button:hover {
   margin: 21px 21px;
   margin-left: 0;
   margin-right: 21px;
-
-  border: 1px solid grey;
-  padding: 20px;
+  margin-bottom: 44px;
+  border-radius: 21%;
+  border: 1px solid blue;
+  padding: 28px;
 }
 
 li #name{
@@ -124,15 +155,19 @@ li #rating{
 } */
 
 .js-url-list{
-  border: 3px blue solid;
+  
+  border-radius: 21%;
   list-style: none;
-  margin: 7px;}
+  margin: 7px;
+  padding-right: 7px;
+}
+  
 
 
 
 
 .js-url-ratings #rating{
-  border: 1px greenyellow solid;
+  border: 1px lightskyblue solid;
 
 }
 
@@ -155,11 +190,19 @@ a{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: lightgreen 1px dotted;
+    
     
   }
   .js-url-ratings #rating{
-    border: 1px greenyellow solid;
-    align-self: ;
+    border: 1px lightskyblue solid;
+    
+  }
+  .container {
+    max-width: 100%;
+    margin: 21px;
+    padding: 21px;
+    display: flex;
+    justify-content: space-evenly;
+  
   }
 }

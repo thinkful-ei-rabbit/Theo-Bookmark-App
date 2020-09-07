@@ -9,15 +9,15 @@ const main = function () {
 
   api.getBookmarks() 
     .then(res => {
-      console.log("These are the res", res)
+      // console.log("These are the res", res)
       res.forEach(item => {
-        store.addBookmark(item)
-        bookmarkList.render()
+        store.addBookmark(item);
+        bookmarkList.render();
       });
     } );
-  bookmarkList.generateHomePage();
+  // bookmarkList.generateHomePage();
   bookmarkList.bindEventListeners();
-  //bookmarkList.render();
+  bookmarkList.render();
 };
 
 $(main);

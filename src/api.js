@@ -12,15 +12,15 @@ const apiFetch = function(...args){
   return fetch(...args)
     .then(results => {
       if (!results.ok) {
-        console.log(results);
         error = { code: results.status };
-      }
-      if (!results.headers.get('Content-Type').includes('json')) {
-        error.message = results.statusText;
-        return Promise.reject(error);
+        if(!results.headers.get('content-type').includes('json')){
+          error.message=results.statusText;
+          return Promise.reject(error)
+        }
       }
       return results.json();
-    }).then(items => {
+    })
+    .then(items => {
       if (error) {
         error.message = items.message;
         return Promise.reject(error);
@@ -30,14 +30,14 @@ const apiFetch = function(...args){
 };
 
 const getBookmarks = function(){
-  return apiFetch (BASE_URL);
+  return apiFetch (`${BASE_URL}`);
 };
 
 
 const createBookmark = function(template){
   const newBookmark= JSON.stringify(template);
-  console.log("look", newBookmark)
-  console.log('here',)
+  console.log("look", newBookmark);
+  
   return fetch(`${BASE_URL}`,{
   
     method: 'POST',
@@ -45,8 +45,9 @@ const createBookmark = function(template){
     body:  newBookmark
   });
 };
+
 const deleteBookmark = function (id) {
-  return fetch(BASE_URL + "/" +id, {
+  return fetch(`${BASE_URL}/${id}`, {
     method: 'DELETE'
   });
 
