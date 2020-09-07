@@ -9,9 +9,9 @@ This app allows you to track your favorite websites by including the following i
   --And a convenience rating-
   
 When you first open the app you will be able to see a list of your saved bookmarks.
-When you log new bookmarks they will be posted and stored to the following URL:https://thinkful-list-api.herokuapp.com/theo/bookmarks
+When you log new bookmarks they will be posted and stored to the following URL:https://thinkful-list-api.herokuapp.com/theo/bookmarks for easy fetch retrieval.
 
-The bookmarks you save will be rendered to the home page. There is a button on each list item that gives you the option to expand the box to elaborate more information.
+The bookmarks you save will be rendered to the home page. There is a button on each list item that gives you the option to expand the box to elaborate more information. This will reveal a link to visit the site saved by the bookmark.
 
 Once a bookmark is no longer useful you can click the delete button to remove it from your list.
 
